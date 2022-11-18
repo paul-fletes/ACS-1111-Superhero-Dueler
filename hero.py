@@ -36,7 +36,7 @@ class Hero:
         armor: armor object'''
         self.armors.append(armor)
 
-    def defend(self, incoming_damage):
+    def defend(self):
         total_defense = 0
         for armor in self.armors:
             total_defense += armor.block()
@@ -66,7 +66,7 @@ class Hero:
         else:
             while self.is_alive() == True and opponent.is_alive() == True:
                 opponent_damage = self.attack()
-                opponent.take_damage(opponent.name, opponent.damage)
+                opponent.take_damage(opponent.name, opponent_damage)
                 self_damage = opponent.attack()
                 self.take_damage(self.name, self_damage)
                 if self.current_health > opponent.current_health:
