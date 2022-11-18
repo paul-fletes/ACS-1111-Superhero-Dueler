@@ -49,19 +49,21 @@ class Hero:
         self.current_health -= damage
 
     def is_alive(self):
-        pass
+        '''Return True or False depending on whether the hero is alive or not'''
+        if self.current_health <= 0:
+            return False
+        else:
+            return True
 
     def fight(self, opponent):
         '''Current hero will take turns fighting the oppenent passed in'''
         random_number = random.randint(0, 1)
         winner = ''
-        if random_number == 0:
-            winner = self.name
-            loser = opponent.name
-        elif random_number == 1:
-            winner = opponent.name
-            loser = self.name
-        print(f'{winner} beats {loser}!')
+        loser = ''
+        if bool(self.abilities) or bool(opponent.abilities):
+            print('draw')
+        else:
+            print('fight')
         return winner
 
 
