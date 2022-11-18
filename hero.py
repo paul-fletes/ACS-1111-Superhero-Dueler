@@ -31,6 +31,15 @@ class Hero:
             total_damage += ability.attack()
         return total_damage
 
+    def defend(self, incoming_damage):
+        pass
+
+    def take_damage(self, damage):
+        pass
+
+    def is_alive(self):
+        pass
+
     def fight(self, opponent):
         '''Current hero will take turns fighting the oppenent passed in'''
         random_number = random.randint(0, 1)
