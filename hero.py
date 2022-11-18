@@ -55,16 +55,10 @@ class Hero:
 
 
 if __name__ == '__main__':
-    # my_hero = Hero('Grace Hopper', 200)
-    # my_hero.fight()
-    # wonder_woman = Hero('Wonder Woman', 200)
-    # dumbledore = Hero('Dumbledore', 150)
-    # wonder_woman.fight(dumbledore)
-    # wonder_woman.add_ability(ability='lasso')
-    # print(wonder_woman.abilities)
+    wonder_woman = Hero('Wonder Woman', 200)
+    dumbledore = Hero('Dumbledore', 150)
+    wonder_woman.fight(dumbledore)
     ability = Ability("Great Debugging", 50)
-    another_ability = Ability("Smarty Pants", 90)
     hero = Hero("Grace Hopper", 200)
     hero.add_ability(ability)
-    hero.add_ability(another_ability)
     print(hero.attack())
