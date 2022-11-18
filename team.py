@@ -14,11 +14,14 @@ class Team:
 
     def remove_hero(self, name):
         '''Removes hero from list. If hero not found, return 0'''
+        foundHero = False
         for hero in self.heroes:
             if hero.name == name:
                 self.heroes.remove(hero)
             else:
-                print(f'{name} does not exist on this team')
+                foundHero = True
+        if not foundHero:
+            return 0
 
     def view_all_heroes(self):
         '''Prints out all heroes to the console'''
