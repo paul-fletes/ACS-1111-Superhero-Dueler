@@ -18,12 +18,17 @@ class Hero:
         winner = ''
         if random_number == 0:
             winner = self.name
+            loser = opponent.name
         elif random_number == 1:
-            winner = opponent
-        print(f'${winner} wins!')
+            winner = opponent.name
+            loser = self.name
+        print(f'{winner} beats {loser}!')
         return winner
 
 
 if __name__ == '__main__':
-    my_hero = Hero('Grace Hopper', 200)
-    my_hero.fight()
+    # my_hero = Hero('Grace Hopper', 200)
+    # my_hero.fight()
+    wonder_woman = Hero('Wonder Woman', 200)
+    dumbledore = Hero('Dumbledore', 150)
+    wonder_woman.fight(dumbledore)
