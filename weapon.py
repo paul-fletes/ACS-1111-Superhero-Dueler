@@ -9,6 +9,6 @@ class Weapon(Ability):
     '''
 
     def attack(self):
-        divided_number = self.max_damage / 2
+        divided_number = int(self.max_damage / 2)
         random_int = random.randint(divided_number, self.max_damage)
         return random_int

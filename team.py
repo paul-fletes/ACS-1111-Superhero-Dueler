@@ -1,3 +1,6 @@
+import random
+
+
 class Team:
     '''
     Team class does not inherit hero, rather contains Hero objects
@@ -50,4 +53,16 @@ class Team:
             living_opponents.append(hero)
 
         while len(living_heroes) > 0 and len(living_opponents) > 0:
-            pass
+            fighter_one = random.choice(living_heroes)
+            fighter_two = random.choice(living_opponents)
+            winner = fighter_one.fight(fighter_two)
+            if (winner == fighter_one):
+                living_opponents.remove_hero(fighter_two)
+            elif (winner == fighter_two):
+                living_heroes.remove_hero(fighter_one)
+            if len(living_heroes) == 0:
+                winning_team = living_opponents.name
+            elif len(living_opponents) == 0:
+                winning_team = living_heroes.name
+        print(f'{winning_team} are the winners!')
+        return winning_team

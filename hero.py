@@ -108,7 +108,7 @@ class Hero:
                 f'Fighter: {self.name}; Kills: {self.kills}; Deaths: {self.deaths}')
             print(
                 f'Fighter: {opponent.name}; Kills: {opponent.kills}; Deaths: {opponent.deaths}')
-            return winner, self.kills, self.deaths
+            return winner
 
 
 if __name__ == '__main__':
