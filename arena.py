@@ -5,7 +5,7 @@ from hero import Hero
 from team import Team
 
 
-class Areana:
+class Arena:
     def __init__(self):
         '''Instantiate properties
         team_one: None
@@ -41,7 +41,8 @@ class Areana:
         '''Prompt for Hero info
         return Hero with user input values'''
         hero_name = input('Hero name: ')
-        hero = Hero(hero_name)
+        starting_health = input('Starting health: ')
+        hero = Hero(hero_name, starting_health)
         add_item = None
         while add_item != '4':
             add_item = input(
@@ -56,3 +57,77 @@ class Areana:
                 armor = self.create_armor()
                 hero.add_armor(armor)
         return hero
+
+    def build_team_one(self):
+        '''Prompt the user to build team_one'''
+        num_of_team_members = int(
+            input('How many members would you like on Team One?\n: '))
+        for i in range(num_of_team_members):
+            hero = self.create_hero()
+            self.team_one.append(hero)
+
+    def build_team_two(self):
+        '''Prompt the user to build team_two'''
+        num_of_team_members = int(
+            input('How many members would you like on Team Two?\n: '))
+        for i in range(num_of_team_members):
+            hero = self.create_hero()
+            self.team_two.append(hero)
+
+    def team_battle(self):
+        '''Battle team_one and team_two together'''
+        for hero in self.team_one:
+            for opponent in self.team_two:
+                hero.fight(opponent)
+
+    def show_stats(self):
+        '''Prints team statistics to terminal'''
+        print('\n')
+        print(self.team_one.name + ' stats: ')
+        self.team_one.stats()
+        print('\n')
+        print(self.team_two.name + ' stats: ')
+        self.team_two.stats()
+        print('\n')
+
+        team_one_kills = 0
+        team_one_deaths = 0
+        for hero in self.team_one.heroes:
+            team_one_kills += hero.kills
+            team_one_deaths += hero.deaths
+        if team_one_deaths == 0:
+            team_one_deaths = 1
+        print(self.team_one.name + ' average K/D ratio was: ' +
+              str(team_one_kills/team_one_deaths))
+        team_two_kills = 0
+        team_two_deaths = 0
+        for hero in self.team_two.heroes:
+            team_two_kills += hero.kills
+            team_two_deaths += hero.deaths
+        if team_two_deaths == 0:
+            team_two_deaths = 1
+        print(self.team_two.name + ' average K/D ratio was: ' +
+              str(team_two_kills/team_two_deaths))
+
+        for hero in self.team_one.heroes:
+            if hero.deaths == 0:
+                print('Survived from ' + self.team_one.name + ': ' + hero.name)
+        for hero in self.team_two.heroes:
+            if hero.deaths == 0:
+                print('Survived from ' + self.team_two.name + ': ' + hero.name)
+
+
+if __name__ == '__main__':
+    game_is_running = True
+    arena = Arena()
+    arena.build_team_one()
+    arena.build_team_two()
+    while game_is_running:
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input('Play Again? Y or N: ')
+        if play_again.lower() == 'n':
+            game_is_running = False
+        else:
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
