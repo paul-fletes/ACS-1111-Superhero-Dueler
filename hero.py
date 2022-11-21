@@ -76,6 +76,10 @@ class Hero:
         random_number = random.randint(0, 1)
         winner = ''
         loser = ''
+        print(
+            f'Fighter: {self.name}; Kills: {self.kills}; Deaths: {self.deaths}')
+        print(
+            f'Fighter: {opponent.name}; Kills: {opponent.kills}; Deaths: {opponent.deaths}')
         if bool(self.abilities) == False and bool(opponent.abilities) == False:
             print('draw')
         else:
@@ -92,8 +96,19 @@ class Hero:
                     loser = self.name
                 self.is_alive()
                 opponent.is_alive()
+                if self.is_alive() == False:
+                    self.add_death(1)
+                    opponent.add_kill(1)
+                elif opponent.is_alive() == False:
+                    opponent.add_kill(1)
+                    self.add_death(1)
             print(f'{winner} beats {loser}')
-            return winner
+            print('Post-match details:')
+            print(
+                f'Fighter: {self.name}; Kills: {self.kills}; Deaths: {self.deaths}')
+            print(
+                f'Fighter: {opponent.name}; Kills: {opponent.kills}; Deaths: {opponent.deaths}')
+            return winner, self.kills, self.deaths
 
 
 if __name__ == '__main__':
