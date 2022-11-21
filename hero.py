@@ -19,6 +19,8 @@ class Hero:
         self.current_health = starting_health
         self.abilities = list()
         self.armors = list()
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability):
         '''Add ability to abilities list'''
@@ -60,6 +62,14 @@ class Hero:
             return False
         else:
             return True
+
+    def add_kill(self, num_kills):
+        '''Update self.kills by num_kills amount'''
+        self.kills += num_kills
+
+    def add_death(self, num_deaths):
+        '''Update self.deaths with num_deaths'''
+        self.deaths += num_deaths
 
     def fight(self, opponent):
         '''Current hero will take turns fighting the oppenent passed in'''
